@@ -1,3 +1,0 @@
-<nav>
-    <a href="{{ route("home") }}">Home</a>
-</nav>
