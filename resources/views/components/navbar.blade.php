@@ -44,6 +44,6 @@
                 Exit
             </a>
         </dialog>
-        <a class="text-sky-500" href="/signin" class="row">Sign in</a>
+        <a class="text-sky-500" href="/login" class="row">Sign in</a>
     </div>
 </nav>
