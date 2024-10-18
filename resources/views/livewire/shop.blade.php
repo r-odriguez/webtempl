@@ -9,27 +9,28 @@
         <div class="good-grid place-items-center w-full">
             @foreach ($templates as $t)
                 <div class="flex flex-col place-items-start gap-1">
-                    <img class="w-60 template-img"
-                         alt="product image"
-                         src="{{ Vite::asset("resources/images/fruit.png") }}"
-                         wire:click="set_dialog_data({{ $t["id"] }})"
+                    <img
+                        class="w-60 template-img"
+                        alt="product image"
+                        src="{{ Vite::asset("resources/images/fruit.png") }}"
+                        wire:click="set_dialog_data({{ $t->id }})"
                     />
 
                     <div class="w-full px-1">
                         <div class="flex place-items-center place-content-between w-full">
-                            <h4>{{ $t["title"] }}</h4>
-                            <button class="add-to-cart w-6" wire:click="add_to_cart({{ $t['id'] }})">
+                            <h4>{{ $t->title }}</h4>
+                            <button class="add-to-cart w-6" wire:click="add_to_cart({{ $t->id }})">
                                 <x-icons.store-bag-outline />
                             </button>
                         </div>
 
-                        <p class="text-sm text-slate-500">{{ $t["description"] }}</p>
+                        <p class="text-sm text-slate-500">{{ $t->description }}</p>
 
                         <div class="flex place-items-center place-c">
-                            <span class="text-xs">By {{ $t["author"] }}</span>
+                            <span class="text-xs">By {{ $t->author->name }}</span>
 
                             <span class="text-sm font-semibold">
-                                {{ "$ " . $t["price"] }}
+                                {{ "$ " . $t->price }}
                             </span>
                         </div>
                     </div>
@@ -50,7 +51,7 @@
                 <div class="flex flex-col">
                     <div class="flex place-items-center gap-4">
                         <h1 class="text-3xl font-semibold">
-                            {{ $template["title"] }}
+                            {{ $template->title }}
                         </h1>
                         <a href="#" class="text-xs text-blue-500">live preview</a>
                     </div>
@@ -59,13 +60,13 @@
                 </div>
 
                 <p class="text-xl">
-                    {{ $template["pricingModel"] == "PAID"
-                       ? '$' . $template["price"]
-                       : $template["pricingModel"] }}
+                    {{ $template->pricingModel == "PAID"
+                       ? '$' . $template->price
+                       : $template->pricingModel }}
                 </p>
 
                 <p class="text-lg font-medium text-gray-400">
-                    {{ $template["description"] }}
+                    {{ $template->description }}
                 </p>
 
                 <button class="p-4 w-fit rounded-lg text-white bg-black">

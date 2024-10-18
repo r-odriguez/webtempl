@@ -2,37 +2,21 @@
 
 namespace App\Livewire;
 
+use App\Models\Templates;
 use Livewire\Component;
 
 class Shop extends Component
 {
-    public $count = 0;
-    public $templates = [
-        [
-            "id" => 0,
-            "title" => "Product 0",
-            "description" => "Product 0",
-            "author" => "Me",
-            "pricingModel" => "PAID",
-            "price" => 2.34,
-        ],
-        [
-            "id" => 1,
-            "title" => "Product 1",
-            "description" => "Product 1",
-            "author" => "Me",
-            "pricingModel" => "PAID",
-            "price" => 2.34,
-        ],
-        [
-            "id" => 2,
-            "title" => "Product 2",
-            "description" => "Product 2",
-            "author" => "Me",
-            "pricingModel" => "PAID",
-            "price" => 2.34,
-        ]
-    ];
+    public $count;
+    public $templates;
+    public $template;
+
+    public function mount()
+    {
+        $this->count = 0;
+        $this->templates = Templates::get();
+        $this->template = Templates::find(1);
+    }
 
     public function render()
     {
@@ -41,7 +25,11 @@ class Shop extends Component
 
     public function add_to_cart(int $id)
     {
-        array_splice($this->templates, $id, 1);
         $this->count++;
+    }
+
+    public function set_dialog_data($id)
+    {
+        $this->template = $this->templates[$id - 1];
     }
 }
